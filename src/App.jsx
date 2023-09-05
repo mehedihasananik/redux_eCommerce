@@ -6,6 +6,7 @@ import About from "./components/About";
 import Item from "./components/item";
 import Error from "./components/Error";
 import Carts from "./components/Carts";
+import CartDetails from "./components/CartDetails";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route index element={<Homepage />} />
           <Route path="about" element={<About />}></Route>
           <Route path="carts" element={<Carts />}></Route>
+          <Route path="cartDetails" element={<CartDetails />}></Route>
           <Route path="item/:id" element={<Item />}></Route>
           <Route path="*" element={<Error />}></Route>
         </Route>

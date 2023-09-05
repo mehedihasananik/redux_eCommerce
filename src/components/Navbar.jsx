@@ -1,5 +1,8 @@
 import { MdOutlineShoppingCartCheckout } from "react-icons/md";
+import { useSelector } from "react-redux";
 const Navbar = () => {
+  const { total } = useSelector((state) => state.cart);
+
   return (
     <div className="bg-black font-Mulish text-white  ">
       <div className="container mx-auto">
@@ -15,7 +18,7 @@ const Navbar = () => {
             </div>
             <div className="absolute left-8 top-[-10px]">
               <div className="flex justify-center items-center bg-[#A29DFF] rounded-full h-8 w-8  text-base text-white">
-                0
+                {total}
               </div>
             </div>
           </div>
