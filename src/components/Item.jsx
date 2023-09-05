@@ -1,40 +1,47 @@
-const Item = ({
-  imgdata,
-  id,
-  address,
-  arrimg,
-  delimg,
-  dish,
-  price,
-  qnty,
-  rating,
-  somedata,
-}) => {
+import { useDispatch, useSelector } from "react-redux";
+import { addTocart } from "../feature/cart/cartSlice";
+
+const Item = ({ item }) => {
+  // imgdata,
+  // id,
+  // address,
+  // arrimg,
+  // delimg,
+  // dish,
+  // price,
+  // qnty,
+  // rating,
+  // somedata,
+
+  const { cart } = useSelector((state) => state.cart);
+
+  const dispatch = useDispatch();
+
   return (
     <div>
       {/* main div */}
       <div className="md:max-w-sm shadow-lg p-5">
         {/* img */}
         <div className="">
-          <img className="w-full h-72 rounded-lg " src={imgdata} alt="" />
+          <img className="w-full h-72 rounded-lg " src={item.imgdata} alt="" />
         </div>
         {/* dish & rating */}
         <div className="flex justify-between pt-3">
           {/* dish*/}
           <div>
-            <h3>{dish}</h3>
+            <h3>{item.dish}</h3>
           </div>
           {/* rating */}
           <div>
-            <h3>{rating}</h3>
+            <h3>{item.rating}</h3>
           </div>
         </div>
         {/* address & price */}
         <div className="flex justify-between pt-2">
           {/* address */}
-          <div>{address}</div>
+          <div>{item.address}</div>
           {/* price */}
-          <div>{price}</div>
+          <div>{item.price}</div>
         </div>
         {/* hr */}
         <div className="pt-4">
@@ -43,15 +50,18 @@ const Item = ({
         {/* add to cart */}
         <div className="flex justify-between items-center pt-4">
           <div>
-            <img className="w-8 " src={arrimg} alt="" />
+            <img className="w-8 " src={item.arrimg} alt="" />
           </div>
           <div>
-            <button className="border-2 border-red-800 bg-[#FF4D6C] text-white py-3 px-8 rounded-lg text-md cursor-pointer">
+            <button
+              onClick={() => dispatch(addTocart(item))}
+              className="border-2 border-red-800 bg-[#FF4D6C] text-white py-3 px-8 rounded-lg text-md cursor-pointer"
+            >
               Add To Cart
             </button>
           </div>
           <div>
-            <img className="w-14 " src={delimg} alt="" />
+            <img className="w-14 " src={item.delimg} alt="" />
           </div>
         </div>
       </div>
