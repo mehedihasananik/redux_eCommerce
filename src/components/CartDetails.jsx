@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 const CartDetails = () => {
   const { cart } = useSelector((state) => state.cart);
-  console.log(cart);
+  // console.log(cart);
   return (
     <div>
       <div className="container mx-auto py-10">
@@ -18,7 +18,7 @@ const CartDetails = () => {
               <h3>Cart Calculation</h3>
             </div>
 
-            {cart.length > 1 ? (
+            {cart.length > 0 ? (
               <div>
                 <button className="border-none flex justify-center items-center py-3 px-5 bg-red-500 text-white font-bold rounded-lg cursor-pointer">
                   <span>
@@ -30,7 +30,7 @@ const CartDetails = () => {
             ) : null}
           </div>
           {/* table */}
-          {cart.length > 1 ? (
+          {cart.length > 0 ? (
             <div className="border-2">
               <Table className="border-2 border-gray-300 shadow-lg" striped>
                 <Table.Head className="text-lg">
@@ -43,7 +43,7 @@ const CartDetails = () => {
                 </Table.Head>
                 <Table.Body className="divide-y">
                   {cart.map((item) => {
-                    const { id, imgdata, dish, price } = item;
+                    const { id, imgdata, dish, price, qnty } = item;
                     return (
                       <Table.Row
                         key={id}
@@ -67,7 +67,7 @@ const CartDetails = () => {
                             <input
                               className="w-20 text-center"
                               type="text"
-                              value={1}
+                              value={qnty}
                               disabled
                             />
                             <button className="border-none cursor-pointer">
