@@ -12,24 +12,22 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addTocart: (state, action) => {
-      const indexFind = state.cart.findIndex(item => item.id === action.payload.id)
-      if (indexFind >= 1) {
-        state.cart[indexFind].qnty += 1
-      }
-      else {
-        let temp = { ...action.payload, qnty: 1 }
-        state.cart = [...state.cart, temp]
-      }
+    addTocart: () => {
+
+    },
+    removeFromCart: () => {
+
+    },
+    incrementItem: () => {
+
+    },
+    decrementItem: () => {
+
     },
 
-    incrementItem: (state, action) => {
-    },
-    decrementItem: (state, action) => {
-    },
-    removeFromCart: (state, action) => {
-    }
+    clearCart: () => {
 
+    },
   }
 })
 

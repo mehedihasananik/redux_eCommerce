@@ -3,10 +3,17 @@ import { Table } from "flowbite-react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BsPlus } from "react-icons/bs";
 import { BiMinus } from "react-icons/bi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  incrementItem,
+  decrementItem,
+  removeFromCart,
+} from "../feature/cart/cartSlice";
 
 const CartDetails = () => {
   const { cart } = useSelector((state) => state.cart);
+
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -79,7 +86,7 @@ const CartDetails = () => {
                             </button>
                           </div>
                         </Table.Cell>
-                        <Table.Cell>{qnty * price}</Table.Cell>
+                        <Table.Cell>400</Table.Cell>
                       </Table.Row>
                     );
                   })}
