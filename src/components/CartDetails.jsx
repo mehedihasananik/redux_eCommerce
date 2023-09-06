@@ -32,7 +32,7 @@ const CartDetails = () => {
             {cart.length > 0 ? (
               <div>
                 <button
-                  onClick={() => dispatch(clearCart(cart))}
+                  onClick={() => dispatch(clearCart())}
                   className="border-none flex justify-center items-center py-3 px-5 bg-red-500 text-white font-bold rounded-lg cursor-pointer"
                 >
                   <span>
@@ -80,10 +80,9 @@ const CartDetails = () => {
                           <div className="flex">
                             <button
                               onClick={() => {
-                                if (qnty === 1) {
-                                  return 1;
-                                }
-                                dispatch(decrementItem(id));
+                                qnty <= 1
+                                  ? dispatch(removeFromCart(id))
+                                  : dispatch(decrementItem(id));
                               }}
                               className="border-none cursor-pointer"
                             >
