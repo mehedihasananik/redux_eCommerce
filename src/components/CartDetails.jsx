@@ -60,7 +60,10 @@ const CartDetails = () => {
                         className="bg-white dark:border-gray-700 dark:bg-gray-800"
                       >
                         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                          <button className="border-none cursor-pointer">
+                          <button
+                            onClick={() => dispatch(removeFromCart(id))}
+                            className="border-none cursor-pointer"
+                          >
                             <RiDeleteBin6Line className="w-10 h-10 bg-white border-none" />
                           </button>
                         </Table.Cell>
@@ -71,7 +74,10 @@ const CartDetails = () => {
                         <Table.Cell>${price}</Table.Cell>
                         <Table.Cell>
                           <div className="flex">
-                            <button className="border-none cursor-pointer">
+                            <button
+                              onClick={() => dispatch(decrementItem(id))}
+                              className="border-none cursor-pointer"
+                            >
                               <BiMinus />
                             </button>
 
@@ -81,7 +87,10 @@ const CartDetails = () => {
                               value={qnty}
                               disabled
                             />
-                            <button className="border-none cursor-pointer">
+                            <button
+                              onClick={() => dispatch(incrementItem(id))}
+                              className="border-none cursor-pointer"
+                            >
                               <BsPlus />
                             </button>
                           </div>

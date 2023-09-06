@@ -53,7 +53,10 @@ const Item = ({ item }) => {
             <img className="w-8 " src={item.arrimg} alt="" />
           </div>
           <div>
-            <button className="border-2 border-red-800 bg-[#FF4D6C] text-white py-3 px-8 rounded-lg text-md cursor-pointer">
+            <button
+              onClick={() => dispatch(addTocart(item))}
+              className="border-2 border-red-800 bg-[#FF4D6C] text-white py-3 px-8 rounded-lg text-md cursor-pointer"
+            >
               Add To Cart
             </button>
           </div>

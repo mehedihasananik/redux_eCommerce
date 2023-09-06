@@ -12,11 +12,23 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addTocart: () => {
+    addTocart: (state, action) => {
+
+      const indexCart = state.cart.findIndex(item => item.id === action.payload.id)
+
+      if (indexCart >= 0) {
+        state.cart[indexCart].qnty += 1
+      }
+      else {
+        let temp = { ...action.payload, qnty: 1 }
+        state.cart = [...state.cart, temp]
+      }
+
 
     },
-    removeFromCart: () => {
-
+    removeFromCart: (state, action) => {
+      const removeItem = state.cart.filter(item => item.id !== action.payload)
+      state.cart = removeItem
     },
     incrementItem: () => {
 
