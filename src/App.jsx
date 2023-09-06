@@ -7,7 +7,7 @@ import Item from "./components/item";
 import Error from "./components/Error";
 import Carts from "./components/Carts";
 import CartDetails from "./components/CartDetails";
-
+import toast, { Toaster } from "react-hot-toast";
 function App() {
   return (
     <BrowserRouter>
@@ -21,6 +21,7 @@ function App() {
           <Route path="*" element={<Error />}></Route>
         </Route>
       </Routes>
+      <Toaster />
     </BrowserRouter>
   );
 }

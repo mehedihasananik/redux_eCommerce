@@ -15,8 +15,20 @@ import { useEffect, useState } from "react";
 const CartDetails = () => {
   const { cart } = useSelector((state) => state.cart);
   const [totalPrice, setTotalprice] = useState(0);
+  const [totalQnty, setTotalQnty] = useState(0);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const totalQuntyCalcultaion = () => {
+      let total = 0;
+      cart.map((item) => {
+        total = item.qnty + total;
+      });
+      setTotalQnty(total);
+    };
+    totalQuntyCalcultaion();
+  }, [cart]);
 
   useEffect(() => {
     const totalCalculation = () => {
@@ -123,11 +135,7 @@ const CartDetails = () => {
 
                   <Table.Row className="flex justify-between py-4">
                     <div>
-                      <h3>
-                        {" "}
-                        Items In Cart :{" "}
-                        {cart.length > 0 ? <span>{cart.length}</span> : null}
-                      </h3>
+                      <h3>Items In Cart :{totalQnty}</h3>
                     </div>
                     <div>
                       <h3>Total Price:₹ {totalPrice}</h3>
