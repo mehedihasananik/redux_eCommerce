@@ -8,6 +8,7 @@ import {
   incrementItem,
   decrementItem,
   removeFromCart,
+  clearCart,
 } from "../feature/cart/cartSlice";
 
 const CartDetails = () => {
@@ -30,7 +31,10 @@ const CartDetails = () => {
 
             {cart.length > 0 ? (
               <div>
-                <button className="border-none flex justify-center items-center py-3 px-5 bg-red-500 text-white font-bold rounded-lg cursor-pointer">
+                <button
+                  onClick={() => dispatch(clearCart(cart))}
+                  className="border-none flex justify-center items-center py-3 px-5 bg-red-500 text-white font-bold rounded-lg cursor-pointer"
+                >
                   <span>
                     <RiDeleteBin6Line />
                   </span>
@@ -75,7 +79,12 @@ const CartDetails = () => {
                         <Table.Cell>
                           <div className="flex">
                             <button
-                              onClick={() => dispatch(decrementItem(id))}
+                              onClick={() => {
+                                if (qnty === 1) {
+                                  return 1;
+                                }
+                                dispatch(decrementItem(id));
+                              }}
                               className="border-none cursor-pointer"
                             >
                               <BiMinus />
@@ -95,7 +104,7 @@ const CartDetails = () => {
                             </button>
                           </div>
                         </Table.Cell>
-                        <Table.Cell>400</Table.Cell>
+                        <Table.Cell>{qnty * price}</Table.Cell>
                       </Table.Row>
                     );
                   })}

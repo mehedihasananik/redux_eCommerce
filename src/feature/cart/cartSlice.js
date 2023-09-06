@@ -30,15 +30,21 @@ const cartSlice = createSlice({
       const removeItem = state.cart.filter(item => item.id !== action.payload)
       state.cart = removeItem
     },
-    incrementItem: () => {
-
+    incrementItem: (state, action) => {
+      const indexCart = state.cart.findIndex(item => item.id === action.payload)
+      if (state.cart[indexCart].qnty >= 1) {
+        state.cart[indexCart].qnty += 1
+      }
     },
-    decrementItem: () => {
-
+    decrementItem: (state, action) => {
+      const indexCart = state.cart.findIndex(item => item.id === action.payload)
+      if (state.cart[indexCart].qnty >= 1) {
+        state.cart[indexCart].qnty -= 1
+      }
     },
 
-    clearCart: () => {
-
+    clearCart: (state, action) => {
+      state.cart = []
     },
   }
 })
