@@ -10,11 +10,24 @@ import {
   removeFromCart,
   clearCart,
 } from "../feature/cart/cartSlice";
+import { useEffect, useState } from "react";
 
 const CartDetails = () => {
   const { cart } = useSelector((state) => state.cart);
+  const [totalPrice, setTotalprice] = useState(0);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const totalCalculation = () => {
+      let total = 0;
+      cart.map((item) => {
+        total = item.price * item.qnty + total;
+      });
+      setTotalprice(total);
+    };
+    totalCalculation();
+  }, [cart]);
 
   return (
     <div>
@@ -110,10 +123,14 @@ const CartDetails = () => {
 
                   <Table.Row className="flex justify-between py-4">
                     <div>
-                      <h3> Items In Cart :2</h3>
+                      <h3>
+                        {" "}
+                        Items In Cart :{" "}
+                        {cart.length > 0 ? <span>{cart.length}</span> : null}
+                      </h3>
                     </div>
                     <div>
-                      <h3>Total Price:₹ 700</h3>
+                      <h3>Total Price:₹ {totalPrice}</h3>
                     </div>
                   </Table.Row>
                 </Table.Body>
