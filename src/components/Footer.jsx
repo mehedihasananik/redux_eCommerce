@@ -16,7 +16,7 @@ const Footer = () => {
                 Email address
               </label>
               <input
-                id="email-address"
+                id="email-addres"
                 name="email"
                 type="email"
                 autoComplete="email"
