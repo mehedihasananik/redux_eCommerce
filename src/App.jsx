@@ -3,11 +3,11 @@ import "./App.css";
 import SharedLayout from "./components/SharedLayout";
 import Homepage from "./components/Homepage";
 import About from "./components/About";
-import Item from "./components/item";
 import Error from "./components/Error";
 import Carts from "./components/Carts";
 import CartDetails from "./components/CartDetails";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import Item from "./components/Item";
 function App() {
   return (
     <BrowserRouter>
