@@ -73,7 +73,10 @@ const CartDetails = () => {
           {/* table */}
           {cart.length > 0 ? (
             <div className="border-2">
-              <Table className="border-2 border-gray-300 shadow-lg" striped>
+              <Table
+                className="border-2 border-gray-300 shadow-lg overflow-x-scroll"
+                striped
+              >
                 <Table.Head className="text-lg">
                   <Table.HeadCell>Action</Table.HeadCell>
                   <Table.HeadCell>Product</Table.HeadCell>
