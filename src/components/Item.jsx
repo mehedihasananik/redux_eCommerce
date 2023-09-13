@@ -1,11 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useDispatch, useSelector } from "react-redux";
 
-import toast from "react-hot-toast";
 import { addTocart } from "../feature/cart/cartSlice";
 
 const Item = ({ item }) => {
-  const { cart } = useSelector((state) => state.cart);
-
   const dispatch = useDispatch();
 
   return (
