@@ -40,7 +40,7 @@ const cartSlice = createSlice({
         state.cart[indexCart].qnty -= 1
       }
     },
-    clearCart: (state, action) => {
+    clearCart: (state) => {
       state.cart = []
     },
   }

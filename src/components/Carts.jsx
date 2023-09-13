@@ -1,5 +1,5 @@
-import Item from "./item";
 import CardData from "../CardData";
+import Item from "./Item";
 
 const Carts = () => {
   return (
