@@ -3,7 +3,7 @@ import Item from "./Item";
 
 const Carts = () => {
   return (
-    <div className="mt-5">
+    <div className="py-3 md:py-5">
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-6 overflow-hidden">
         {CardData.map((item) => {
           // console.log(item);

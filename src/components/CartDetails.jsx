@@ -53,7 +53,7 @@ const CartDetails = () => {
 
   return (
     <div>
-      <div className="container mx-auto py-10">
+      <div className="container mx-auto py-4 md:py-10">
         <div className="">
           {/* cart calculation */}
           <div className="flex justify-between px-10 bg-black text-white items-center py-4 rounded-t-lg">
