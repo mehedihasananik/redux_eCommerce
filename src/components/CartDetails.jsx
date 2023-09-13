@@ -1,5 +1,5 @@
 import { Table } from "flowbite-react";
-
+import { Card, Typography } from "@material-tailwind/react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BsPlus } from "react-icons/bs";
 import { BiMinus } from "react-icons/bi";
@@ -42,6 +42,14 @@ const CartDetails = () => {
     };
     totalCalculation();
   }, [cart]);
+  const TABLE_HEAD = [
+    "Action",
+    "PRODUCT",
+    "NAME",
+    "QTY",
+    "PRICE",
+    "TOTAL AMOUNT",
+  ];
 
   return (
     <div>
@@ -72,84 +80,136 @@ const CartDetails = () => {
           </div>
           {/* table */}
           {cart.length > 0 ? (
-            <div className="border-2">
-              <Table
-                className="border-2 border-gray-300 shadow-lg overflow-x-scroll"
-                striped
-              >
-                <Table.Head className="text-lg">
-                  <Table.HeadCell>Action</Table.HeadCell>
-                  <Table.HeadCell>Product</Table.HeadCell>
-                  <Table.HeadCell>Name</Table.HeadCell>
-                  <Table.HeadCell>Price</Table.HeadCell>
-                  <Table.HeadCell>Qty</Table.HeadCell>
-                  <Table.HeadCell>Total Amount</Table.HeadCell>
-                </Table.Head>
-                <Table.Body className="divide-y">
-                  {cart.map((item) => {
-                    const { id, imgdata, dish, price, qnty } = item;
-                    return (
-                      <Table.Row
-                        key={id}
-                        className="bg-white dark:border-gray-700 dark:bg-gray-800"
-                      >
-                        <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                          <button
-                            onClick={() => dispatch(removeFromCart(id))}
-                            className="border-none cursor-pointer"
+            <>
+              <Card className="h-full w-full overflow-x-scroll md:overflow-x-hidden border">
+                <table className="w-full min-w-max table-auto text-left border">
+                  <thead>
+                    <tr>
+                      {TABLE_HEAD.map((head) => (
+                        <th
+                          key={head}
+                          className="border border-deep-orange-600 bg-blue-gray-50 p-4"
+                        >
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-bold leading-none opacity-100"
                           >
-                            <RiDeleteBin6Line className="w-10 h-10 bg-white border-none" />
-                          </button>
-                        </Table.Cell>
-                        <Table.Cell>
-                          <img className="w-14 h-14" src={imgdata} alt="" />
-                        </Table.Cell>
-                        <Table.Cell>{dish}</Table.Cell>
-                        <Table.Cell>${price}</Table.Cell>
-                        <Table.Cell>
-                          <div className="flex">
-                            <button
-                              onClick={() => {
-                                qnty <= 1
-                                  ? dispatch(removeFromCart(id))
-                                  : dispatch(decrementItem(id));
-                              }}
-                              className="border-none cursor-pointer"
-                            >
-                              <BiMinus />
-                            </button>
+                            {head}
+                          </Typography>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cart.map((item, index) => {
+                      const { id, imgdata, dish, price, qnty } = item;
+                      const classes = "p-5 ";
 
-                            <input
-                              className="w-20 text-center"
-                              type="text"
-                              value={qnty}
-                              disabled
-                            />
-                            <button
-                              onClick={() => dispatch(incrementItem(id))}
-                              className="border-none cursor-pointer"
+                      return (
+                        <tr key={id}>
+                          <td className={`p-5 border ${classes}`}>
+                            <Typography
+                              variant="small"
+                              color="blue-gray"
+                              className="font-bold border border-deep-orange-600"
                             >
-                              <BsPlus />
-                            </button>
-                          </div>
-                        </Table.Cell>
-                        <Table.Cell>{qnty * price}</Table.Cell>
-                      </Table.Row>
-                    );
-                  })}
+                              <button
+                                onClick={() => dispatch(removeFromCart(id))}
+                                className="border-none cursor-pointer"
+                              >
+                                <RiDeleteBin6Line className="w-10 h-10 bg-white border-none" />
+                              </button>
+                            </Typography>
+                          </td>
+                          <td className={classes}>
+                            <Typography
+                              variant="small"
+                              color="blue-gray"
+                              className="font-bold border border-deep-orange-600"
+                            >
+                              <img className="w-14 h-14" src={imgdata} alt="" />
+                            </Typography>
+                          </td>
+                          <td className={classes}>
+                            <Typography
+                              variant="small"
+                              color="blue-gray"
+                              className="font-bold border border-deep-orange-600"
+                            >
+                              {dish}
+                            </Typography>
+                          </td>
+                          <td
+                            className={`p-5 border border-red-500 ${classes}`}
+                          >
+                            <Typography
+                              as="a"
+                              href="#"
+                              variant="small"
+                              color="blue-gray"
+                              className="font-medium"
+                            >
+                              <div className="flex">
+                                <button
+                                  onClick={() => {
+                                    qnty <= 1
+                                      ? dispatch(removeFromCart(id))
+                                      : dispatch(decrementItem(id));
+                                  }}
+                                  className="border-none cursor-pointer"
+                                >
+                                  <BiMinus />
+                                </button>
 
-                  <Table.Row className="flex justify-between py-4">
-                    <div>
-                      <h3>Items In Cart :{totalQnty}</h3>
-                    </div>
-                    <div>
-                      <h3>Total Price:₹ {totalPrice}</h3>
-                    </div>
-                  </Table.Row>
-                </Table.Body>
-              </Table>
-              {/* footer */}
-            </div>
+                                <input
+                                  className="w-20 text-center"
+                                  type="text"
+                                  value={qnty}
+                                  disabled
+                                />
+                                <button
+                                  onClick={() => dispatch(incrementItem(id))}
+                                  className="border-none cursor-pointer"
+                                >
+                                  <BsPlus />
+                                </button>
+                              </div>
+                            </Typography>
+                          </td>
+                          <td className={classes}>
+                            <Typography
+                              variant="small"
+                              color="blue-gray"
+                              className="font-normal"
+                            >
+                              {price}
+                            </Typography>
+                          </td>
+                          <td className={classes}>
+                            <Typography
+                              variant="small"
+                              color="blue-gray"
+                              className="font-normal"
+                            >
+                              {qnty * price}
+                            </Typography>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </Card>{" "}
+              <div className="pt-10 flex justify-center space-x-6">
+                <div>
+                  <h3>Items In Cart:({totalQnty})</h3>
+                </div>
+                <div>
+                  <h3>Total Price: ₹{totalPrice}</h3>
+                </div>
+              </div>
+            </>
           ) : (
             <h3>Your Cart is empty</h3>
           )}

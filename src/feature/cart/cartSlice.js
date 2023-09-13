@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import toast, { Toaster } from 'react-hot-toast';
 
 const initialState = {
   cart: [],
@@ -14,14 +14,14 @@ const cartSlice = createSlice({
   reducers: {
     addTocart: (state, action) => {
       const itemIndex = state.cart.findIndex(item => item.id === action.payload.id)
-      console.log(itemIndex)
-
       if (itemIndex >= 0) {
         state.cart[itemIndex].qnty += 1
+        toast.success('Increased by 1')
       }
       else {
         let tem = { ...action.payload, qnty: 1 }
         state.cart = [...state.cart, tem]
+        toast.success('Added to Cart!')
       }
     },
     removeFromCart: (state, action) => {
