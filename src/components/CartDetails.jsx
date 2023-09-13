@@ -14,6 +14,8 @@ import { useEffect, useState } from "react";
 
 const CartDetails = () => {
   const { cart } = useSelector((state) => state.cart);
+  console.log(cart);
+
   const [totalPrice, setTotalprice] = useState(0);
   const [totalQnty, setTotalQnty] = useState(0);
 

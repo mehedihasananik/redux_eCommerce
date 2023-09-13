@@ -5,7 +5,7 @@ const initialState = {
   cart: [],
   amount: 0,
   total: 0,
-  loading: 0
+  loading: false
 }
 
 const cartSlice = createSlice({
@@ -13,18 +13,16 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addTocart: (state, action) => {
+      const itemIndex = state.cart.findIndex(item => item.id === action.payload.id)
+      console.log(itemIndex)
 
-      const indexCart = state.cart.findIndex(item => item.id === action.payload.id)
-
-      if (indexCart >= 0) {
-        state.cart[indexCart].qnty += 1
+      if (itemIndex >= 0) {
+        state.cart[itemIndex].qnty += 1
       }
       else {
-        let temp = { ...action.payload, qnty: 1 }
-        state.cart = [...state.cart, temp]
+        let tem = { ...action.payload, qnty: 1 }
+        state.cart = [...state.cart, tem]
       }
-
-
     },
     removeFromCart: (state, action) => {
       const removeItem = state.cart.filter(item => item.id !== action.payload)
@@ -42,7 +40,6 @@ const cartSlice = createSlice({
         state.cart[indexCart].qnty -= 1
       }
     },
-
     clearCart: (state, action) => {
       state.cart = []
     },

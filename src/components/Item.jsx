@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addTocart } from "../feature/cart/cartSlice";
+
 import toast from "react-hot-toast";
+import { addTocart } from "../feature/cart/cartSlice";
 
 const Item = ({ item }) => {
   const { cart } = useSelector((state) => state.cart);
@@ -44,10 +45,7 @@ const Item = ({ item }) => {
           </div>
           <div>
             <button
-              onClick={() => {
-                dispatch(addTocart(item));
-                toast.success("Added to cart");
-              }}
+              onClick={() => dispatch(addTocart(item))}
               className="border-2 border-red-800 bg-[#FF4D6C] text-white py-3 px-8 rounded-lg text-md cursor-pointer"
             >
               Add To Cart
